@@ -1,0 +1,35 @@
+{
+  "modes": {
+    "product": [
+      "Ember",
+      "Tide",
+      "Bloom"
+    ],
+    "theme": [
+      "Dark",
+      "Light"
+    ]
+  },
+  "ignorePattern": "^tier[-\\s]",
+  "ignore": [
+    "Primitives",
+    "Product",
+    "Theme",
+    "Type",
+    "Proportion",
+    "Semantic",
+    "Components",
+    "Value",
+    "Mode 1"
+  ],
+  "relink": {
+    "collections": "^tier[-\\s]*3",
+    "prefer": [
+      "neutral-palette"
+    ],
+    "pins": {
+      "knob-caption": "color-text-secondary",
+      "soar-machine-bg": "color-bg-surface"
+    }
+  }
+}

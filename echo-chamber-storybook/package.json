@@ -1,0 +1,16 @@
+{
+  "name": "echo-chamber-storybook",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "tokens": "node scripts/build-tokens.mjs"
+  },
+  "devDependencies": {
+    "@storybook/addon-a11y": "^10.6.2",
+    "@storybook/html-vite": "10.6.2",
+    "storybook": "10.6.2",
+    "vite": "7.3.7"
+  }
+}

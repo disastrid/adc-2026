@@ -1,0 +1,245 @@
+/* Every value here is a variable from the Figma export. No hard-coded colours.
+   Components use the Tier 3 component tokens; page chrome uses Tier 2. */
+
+body {
+  background: var(--color-bg-canvas);
+  color: var(--color-text-primary);
+  font-family: var(--typography-font-family-body), ui-monospace, monospace;
+  font-size: var(--typography-font-size-default);
+  transition: background 0.2s;
+}
+
+.display {
+  font-family: var(--typography-font-family-display), 'Tiny5', var(--typography-font-family-body), monospace;
+  font-weight: var(--typography-weight-regular);
+  line-height: 1.1;
+  margin: 0;
+}
+.caption {
+  font-size: var(--typography-font-size-sm);
+  font-weight: var(--typography-weight-medium);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+.label {
+  font-size: var(--typography-font-size-sm);
+  font-weight: var(--typography-weight-medium);
+}
+
+/* Button ------------------------------------------------------------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: var(--spacing-one);
+  border: 0; cursor: pointer;
+  font-family: var(--typography-font-family-body), ui-monospace, monospace;
+  font-weight: var(--typography-weight-medium);
+  line-height: 1.3;
+}
+.btn--large {
+  font-size: var(--button-size-large-font-size);
+  border-radius: var(--button-size-large-default-radius);
+  padding: var(--button-size-large-default-padding-vert) var(--button-size-large-default-padding-horiz);
+}
+.btn--large.btn--slim {
+  border-radius: var(--button-size-large-slim-radius);
+  padding: var(--button-size-large-slim-padding-vert) var(--button-size-large-slim-padding-horiz);
+}
+.btn--medium {
+  font-size: var(--button-size-medium-font-size);
+  border-radius: var(--button-size-medium-default-radius);
+  padding: var(--button-size-medium-default-padding-vert) var(--button-size-medium-default-padding-horiz);
+}
+.btn--medium.btn--slim {
+  border-radius: var(--button-size-medium-slim-radius);
+  padding: var(--button-size-medium-slim-padding-vert) var(--button-size-medium-slim-padding-horiz);
+}
+
+.btn--primary { background: var(--button-type-primary-default-bg); color: var(--button-type-primary-default-font); }
+.btn--primary:hover { background: var(--button-type-primary-hover-bg); color: var(--button-type-primary-hover-font); }
+.btn--primary:disabled { background: var(--button-type-primary-disabled-bg); color: var(--button-type-primary-disabled-font); }
+
+.btn--secondary { background: transparent; box-shadow: inset 0 0 0 1.5px var(--button-type-secondary-default-stroke); color: var(--button-type-secondary-default-font); }
+.btn--secondary:hover { background: var(--button-type-secondary-hover-fill); box-shadow: inset 0 0 0 1.5px var(--button-type-secondary-hover-stroke); color: var(--button-type-secondary-hover-font); }
+.btn--secondary:disabled { background: transparent; box-shadow: inset 0 0 0 1.5px var(--button-type-secondary-disabled-stroke); color: var(--button-type-secondary-disabled-font); }
+
+.btn--tertiary { background: var(--button-type-tertiary-default-bg); color: var(--button-type-tertiary-default-font); }
+.btn--tertiary:hover { background: var(--button-type-tertiary-hover-bg); color: var(--button-type-tertiary-hover-font); }
+.btn--tertiary:disabled { background: var(--button-type-tertiary-disabled-bg); color: var(--button-type-tertiary-disabled-font); }
+
+.btn:disabled { cursor: not-allowed; }
+
+/* Icon button -------------------------------------------------------- */
+.icon-btn {
+  display: inline-grid; place-items: center;
+  padding: var(--button-type-icon-padding);
+  border-radius: var(--button-type-icon-radius);
+  border: 0; cursor: pointer; background: transparent;
+}
+.icon-btn .icon { width: var(--button-type-icon-icon); height: var(--button-type-icon-icon); }
+
+.icon-btn--filled { background: var(--button-type-icon-filled-default-bg); color: var(--button-type-icon-filled-default-icon); }
+.icon-btn--filled:hover { background: var(--button-type-icon-filled-hover-bg); color: var(--button-type-icon-filled-hover-font); }
+.icon-btn--filled.is-active { background: var(--button-type-icon-filled-active-bg); color: var(--button-type-icon-filled-active-font); }
+.icon-btn--filled:disabled { background: var(--button-type-icon-filled-disabled-bg); color: var(--button-type-icon-filled-disabled-icon); cursor: not-allowed; }
+
+.icon-btn--ghost { color: var(--button-type-icon-ghost-default-icon); }
+.icon-btn--ghost:hover { background: var(--button-type-icon-ghost-hover-bg); color: var(--button-type-icon-ghost-hover-font); }
+.icon-btn--ghost.is-active { background: var(--button-type-icon-ghost-active-bg); color: var(--button-type-icon-ghost-active-font); }
+.icon-btn--ghost:disabled { background: var(--button-type-icon-ghost-disabled-bg); color: var(--button-type-icon-ghost-disabled-icon); cursor: not-allowed; }
+
+/* Toggle ------------------------------------------------------------- */
+.toggle {
+  display: inline-flex; align-items: center; gap: var(--toggle-space-between); cursor: pointer;
+  font-family: var(--toggle-typography-font-family), ui-monospace, monospace;
+  font-size: var(--toggle-typography-font-size);
+}
+.toggle input { position: absolute; opacity: 0; pointer-events: none; }
+.toggle__track {
+  position: relative; flex: none;
+  width: var(--toggle-track-width); height: var(--toggle-track-height);
+  border-radius: var(--toggle-radius);
+  background: var(--toggle-state-off-default-track);
+  transition: background 0.15s;
+}
+.toggle__thumb {
+  position: absolute; top: 50%; left: 2px;
+  width: var(--toggle-toggle-width); height: var(--toggle-toggle-width);
+  border-radius: var(--toggle-radius);
+  background: var(--toggle-state-off-default-toggle);
+  transform: translateY(-50%);
+  transition: left 0.15s, background 0.15s;
+}
+.toggle__label { color: var(--toggle-state-off-default-font); }
+.toggle input:checked + .toggle__track { background: var(--toggle-state-on-default-track); }
+.toggle input:checked + .toggle__track .toggle__thumb {
+  left: calc(var(--toggle-track-width) - var(--toggle-toggle-width) - 2px);
+  background: var(--toggle-state-on-default-toggle);
+}
+.toggle input:checked ~ .toggle__label { color: var(--toggle-state-on-default-font); }
+.toggle input:disabled + .toggle__track { background: var(--toggle-state-off-disabled-track); }
+.toggle input:disabled + .toggle__track .toggle__thumb { background: var(--toggle-state-off-disabled-toggle); }
+.toggle input:disabled ~ .toggle__label { color: var(--toggle-state-off-disabled-font); }
+.toggle input:checked:disabled + .toggle__track { background: var(--toggle-state-on-disabled-track); }
+.toggle input:checked:disabled + .toggle__track .toggle__thumb { background: var(--toggle-state-on-disabled-toggle); }
+.toggle input:checked:disabled ~ .toggle__label { color: var(--toggle-state-on-disabled-font); }
+.toggle:has(input:disabled) { cursor: not-allowed; }
+.toggle input:focus-visible + .toggle__track { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+
+/* Knob --------------------------------------------------------------- */
+.knob {
+  display: inline-flex; flex-direction: column; align-items: center; gap: var(--spacing-half);
+  cursor: ns-resize; user-select: none; touch-action: none; outline: none;
+  font-family: var(--typography-font-family-body), ui-monospace, monospace;
+}
+.knob svg { overflow: visible; }
+.knob circle { fill: none; }
+.knob__track { stroke: var(--color-border-default); }
+.knob .knob__body { fill: var(--color-bg-raised); stroke-width: 1; }
+.knob__pointer { stroke: var(--knob-value); stroke-width: 2; stroke-linecap: round; }
+.knob__value-text { color: var(--knob-value); font-weight: var(--typography-weight-medium); }
+.knob__label {
+  color: var(--knob-caption);
+  font-weight: var(--typography-weight-semibold);
+  letter-spacing: 0.08em; text-transform: uppercase;
+}
+.knob--large .knob__value-text { font-size: var(--knob-font-size-value-lg); }
+.knob--large .knob__label { font-size: var(--knob-font-size-caption-lg); }
+.knob--small .knob__value-text { font-size: var(--knob-font-size-value-sm); }
+.knob--small .knob__label { font-size: var(--knob-font-size-caption-sm); }
+
+/* Each colour role has its own Default / Hover / Active tokens */
+.knob--primary .knob__value { stroke: var(--knob-primary-default-track); }
+.knob--primary .knob__body { stroke: var(--knob-primary-default-stroke); }
+.knob--primary:not(.is-disabled):not(.is-active):hover .knob__value { stroke: var(--knob-primary-hover-track); }
+.knob--primary:not(.is-disabled):not(.is-active):hover .knob__body { stroke: var(--knob-primary-hover-stroke); }
+.knob--primary.is-active .knob__value { stroke: var(--knob-primary-active-track); }
+.knob--primary.is-active .knob__body { stroke: var(--knob-primary-active-stroke); stroke-width: 2; }
+
+.knob--secondary .knob__value { stroke: var(--knob-secondary-default-track); }
+.knob--secondary .knob__body { stroke: var(--knob-secondary-default-stroke); }
+.knob--secondary:not(.is-disabled):not(.is-active):hover .knob__value { stroke: var(--knob-secondary-hover-track); }
+.knob--secondary:not(.is-disabled):not(.is-active):hover .knob__body { stroke: var(--knob-secondary-hover-stroke); }
+.knob--secondary.is-active .knob__value { stroke: var(--knob-secondary-active-track); }
+.knob--secondary.is-active .knob__body { stroke: var(--knob-secondary-active-stroke); stroke-width: 2; }
+
+.knob--tertiary .knob__value { stroke: var(--knob-tertiary-default-track); }
+.knob--tertiary .knob__body { stroke: var(--knob-tertiary-default-stroke); }
+.knob--tertiary:not(.is-disabled):not(.is-active):hover .knob__value { stroke: var(--knob-tertiary-hover-track); }
+.knob--tertiary:not(.is-disabled):not(.is-active):hover .knob__body { stroke: var(--knob-tertiary-hover-stroke); }
+.knob--tertiary.is-active .knob__value { stroke: var(--knob-tertiary-active-track); }
+.knob--tertiary.is-active .knob__body { stroke: var(--knob-tertiary-active-stroke); stroke-width: 2; }
+
+.knob:focus-visible svg { outline: 2px solid var(--color-primary); outline-offset: 4px; border-radius: 50%; }
+
+/* Slider ------------------------------------------------------------- */
+.slider {
+  position: relative; width: 100%;
+  height: var(--slider-track-height);
+  border-radius: var(--radius-round);
+  cursor: pointer; touch-action: none; outline: none;
+}
+.slider__thumb {
+  position: absolute; top: 50%;
+  /* inset by spacing/quarter at both ends, like the Figma component */
+  left: calc(var(--spacing-quarter) + (100% - var(--slider-toggle-width) - 2 * var(--spacing-quarter)) * var(--value));
+  width: var(--slider-toggle-width); height: var(--slider-toggle-width);
+  border-radius: var(--radius-round);
+  transform: translateY(-50%);
+}
+.slider--primary { background: var(--slider-primary-default-track); }
+.slider--primary .slider__thumb { background: var(--slider-primary-default-toggle); }
+.slider--primary.is-active { background: var(--slider-primary-active-track); }
+.slider--primary.is-active .slider__thumb { background: var(--slider-primary-active-toggle); }
+
+.slider--secondary { background: var(--slider-secondary-default-track); }
+.slider--secondary .slider__thumb { background: var(--slider-secondary-default-toggle); }
+.slider--secondary.is-active { background: var(--slider-secondary-active-track); }
+.slider--secondary.is-active .slider__thumb { background: var(--slider-secondary-active-toggle); }
+
+.slider--tertiary { background: var(--slider-tertiary-default-track); }
+.slider--tertiary .slider__thumb { background: var(--slider-tertiary-default-toggle); }
+.slider--tertiary.is-active { background: var(--slider-tertiary-active-track); }
+.slider--tertiary.is-active .slider__thumb { background: var(--slider-tertiary-active-toggle); }
+
+.slider.is-disabled { background: var(--slider-disabled-track); cursor: not-allowed; }
+.slider.is-disabled .slider__thumb { background: var(--slider-disabled-toggle); }
+.slider:focus-visible { outline: 2px solid var(--color-text-primary); outline-offset: 2px; }
+
+/* Soar Machine ------------------------------------------------------- */
+.soar {
+  /* Figma: 350px content (Frame 40, not a token) + soar-machine/padding each side
+     + a 1px soar-machine/stroke that counts in the layout = 432px */
+  box-sizing: content-box; width: 350px;
+  display: flex; flex-direction: column;
+  gap: var(--soar-machine-spacing-vert);
+  padding: var(--soar-machine-padding);
+  border: 1px solid var(--soar-machine-stroke);
+  border-radius: var(--soar-machine-radius);
+  background: var(--soar-machine-bg);
+}
+.soar__title {
+  margin: 0;
+  font-family: var(--soar-machine-font-family), 'Tiny5', monospace;
+  font-size: var(--soar-machine-title-size);
+  font-weight: var(--typography-weight-medium);
+  line-height: 1.3;
+  color: var(--soar-machine-title-color);
+}
+.soar__toggles { display: flex; align-items: center; gap: var(--spacing-two); }
+.soar__controls { display: flex; align-items: center; justify-content: space-between; }
+/* Figma: the sliders column is a fixed 245px (not a token) */
+.soar__sliders { width: 245px; display: flex; flex-direction: column; gap: var(--spacing-one); }
+.soar__slider-group { display: flex; flex-direction: column; gap: var(--spacing-one); }
+.soar__label {
+  font-family: var(--typography-font-family-body), ui-monospace, monospace;
+  font-size: var(--typography-font-size-sm);
+  font-weight: var(--typography-weight-regular);
+  color: var(--color-text-secondary);
+}
+.soar__actions { display: flex; justify-content: flex-end; gap: var(--spacing-one); }
+.soar__actions [data-soar] { display: contents; }
+/* Disabled knob: the same grey for every type */
+.knob.is-disabled { cursor: not-allowed; }
+.knob.is-disabled .knob__value { stroke: var(--knob-disabled-default-track); }
+.knob.is-disabled .knob__body { stroke: var(--knob-disabled-default-stroke); }
