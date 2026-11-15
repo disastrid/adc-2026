@@ -8,7 +8,7 @@ This is a tiny baby design system, and demonstrates a possible bridge between Fi
 
 ## Storybook setup (do this once)
 
-Go into the cloned repo, do this:
+Go into the Storybook folder in the cloned repo and do this:
 
 ```sh
 npm install
