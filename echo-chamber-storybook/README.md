@@ -1,22 +1,38 @@
 # Echo Chamber: Figma → Storybook
 
-The smallest possible bridge between Figma variables and code. No token pipeline, no build step: Storybook reads the JSON exported from Figma and turns it into CSS variables, and the components only ever use those variables.
+This is the documentation from my talk at audio.dev 2026, You Need A Design System.
 
-## Setup (once)
+This is a tiny baby design system, and demonstrates a possible bridge between Figma variables and code. There's minimal token pipeline, and no build step: Storybook reads the JSON exported from Figma and turns it into CSS variables, and the components only ever use those variables.
+
+## Storybook setup (do this once)
+
+Go into the cloned repo, do this:
 
 ```sh
 npm install
 npm run storybook        # opens on http://localhost:6006
 ```
 
-## The demo
+## Figma
 
-1. In Figma, change a variable (for example `orange/hue` in **Primitives**, or the Ember mode of `color/primary`).
-2. Export the variables to JSON.
-3. Paste the export into `tokens/figma-variables.json` and save, replacing the contents. You can also drop in several files, such as one per collection or mode.
+Get the Figma file from the repo and open it in Figma.
+
+Go to `Plugins > Manange plugins ...` at the top. Search Variables to JSON and install it. You can now launch this plugin from the plugins icon in the bottom toolbar (looks like a grid of four shapes).
+
+1. In Figma, change a variable. A good way to see how this works is to go into Tier 2 - Products which has the three product modes. Click on a colour and change it.
+2. Click on the plugins icon, select Variables to JSON. Click copy. 
+3. In a code editor, paste everything into `tokens/figma-variables.json` and save. This replaces the contents and updates the design system to your latest version of the variables. 
 4. Storybook updates by itself. No restart, no reload.
 
-Use the **Product** (Ember / Tide / Bloom) and **Theme** (Dark / Light) menus in the Storybook toolbar to switch modes. They match the modes of the Product and Theme collections in Figma.
+## See it in action
+
+Go to `http://localhost:6006` to see Storybook and explore all the components.
+
+1. To see different product colourways: Go to the product switcher at the very top. The default is Ember, and you can switch with this dropdown.
+
+2. To see light and dark modes select the Mode switch at the very top. 
+
+3. To see accessibility assessments, open the add-on panel (third icon from the right at the top - I know, it's not ideal). This opens the bottom panel where you can do things like change the text in your components, and there's an accessibility tab that will take you to any feature that it flags as problematic.
 
 ## How it works
 
@@ -30,8 +46,8 @@ Use the **Product** (Ember / Tide / Bloom) and **Theme** (Dark / Light) menus in
 
 Naming rule: a Figma variable `color/bg/surface` becomes `var(--color-bg-surface)`. Each variable shows this name under **Code syntax** in Figma.
 
-## Knobs
+## Robot do!
 
-The knobs really turn: drag up or down (hold Shift for fine control), use the arrow keys when focused, or double-click to reset. The hover and active looks match the Knob `State` variants in Figma. Hz knobs use a log scale, like real filter controls.
+This whole pipeline has become significantly less painful with the age of agents. If you run into problems point your agent at this repo (and connect it to Figma via MCP, though I believe you need a paid account for that) and let the robot do the boring stuff.
 
-If you add a new mode in Figma, add its name to `tokens.config.json`.
+Happy designing!
