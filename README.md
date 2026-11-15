@@ -1,41 +1,55 @@
-# ADC 2026: You Need A Design System
+# Echo Chamber: Figma → Storybook
 
-At ADC 2026 I did a talk called You Need A Design System. Here's the sample design system I made (using Claude) and the Figma file that provides the data.
+## Want to see the slides from the talk? [Find them here on Google Slides](https://docs.google.com/presentation/d/1BQqQI81YHht2PtZOxro0g8B9dtoddr9uQYgAL7owFdQ/edit?usp=sharing)
 
-## What's in here
+This is the documentation from my talk at audio.dev 2026, You Need A Design System.
 
-| | |
-|---|---|
-| `echoChamber_designSystemDemo.fig` | The Figma file: variables (colour, type, spacing), components and their states |
-| `echo-chamber-storybook/` | A small Storybook that builds the same components in code from the Figma variables |
+This is a tiny baby design system, and demonstrates a possible bridge between Figma variables and code. There's minimal token pipeline, and no build step: Storybook reads the JSON exported from Figma and turns it into CSS variables, and the components only ever use those variables.
 
-The two stay in sync through one JSON file: the variables exported from Figma.
+## Storybook setup (do this once)
 
-## Run the Storybook
-
-You need [Node.js](https://nodejs.org) 20.19 or newer.
+Go into the cloned repo, do this:
 
 ```sh
-cd echo-chamber-storybook
 npm install
-npm run storybook
+npm run storybook        # opens on http://localhost:6006
 ```
 
-Storybook opens at http://localhost:6006. Use the **Product** (Ember / Tide / Bloom) and **Theme** (Dark / Light) menus in the toolbar to switch modes, just like the variable modes in Figma.
+## Figma
 
-## Set up Figma
+Get the Figma file from the repo and open it in Figma.
 
-1. In Figma, import `echoChamber_designSystemDemo.fig` (drag it into the Figma file browser, or **Import** from the menu).
-2. Install the free **Variables to JSON** plugin from the Figma Community (search for it under **Plugins** in Figma).
+Go to `Plugins > Manange plugins ...` at the top. Search Variables to JSON and install it. You can now launch this plugin from the plugins icon in the bottom toolbar (looks like a grid of four shapes).
 
-## Update Storybook from Figma
+1. In Figma, change a variable. A good way to see how this works is to go into Tier 2 - Products which has the three product modes. Click on a colour and change it.
+2. Click on the plugins icon, select Variables to JSON. Click copy. 
+3. In a code editor, paste everything into `tokens/figma-variables.json` and save. This replaces the contents and updates the design system to your latest version of the variables. 
+4. Storybook updates by itself. No restart, no reload.
 
-1. Change any variable in the Figma file (a colour, a spacing value, a font size…).
-2. Run the **Variables to JSON** plugin and copy the JSON it exports.
-3. Open `echo-chamber-storybook/tokens/figma-variables.json`, select everything, paste the export over it and save.
-4. Storybook updates automatically. No restart needed.
+## See it in action
 
-## Good to know
+Go to `http://localhost:6006` to see Storybook and explore all the components.
 
-- **New modes:** if you add a mode in Figma (a new product or theme), add its name to `echo-chamber-storybook/tokens.config.json` so it shows up in the Storybook toolbar.
-- **Aliases:** the plugin exports component variables as plain values rather than links (e.g. `#ff7a3d` instead of `color/primary`). Storybook reconnects them to the right Tier 2 variable by matching values, so product and theme switching still works. When two variables share a value and the match is ambiguous, the correct link is set in `relink.pins` in `tokens.config.json`.
+1. To see different product colourways: Go to the product switcher at the very top. The default is Ember, and you can switch with this dropdown.
+
+2. To see light and dark modes select the Mode switch at the very top. 
+
+3. To see accessibility assessments, open the add-on panel (third icon from the right at the top - I know, it's not ideal). This opens the bottom panel where you can do things like change the text in your components, and there's an accessibility tab that will take you to any feature that it flags as problematic.
+
+## How it works
+
+| File | What it does |
+|---|---|
+| `tokens/*.json` | The Figma export, unchanged |
+| `tokens.config.json` | Which names are modes (`Ember`, `Dark`…) and which are just collection names to drop |
+| `src/tokens.js` | ~90 lines: JSON → `--css-variables`, with modes as `[data-product]` / `[data-theme]` selectors |
+| `src/components/` | Button, Icon Button, Toggle, Knob: plain HTML and CSS, using variables only |
+| `npm run tokens` | Optional: writes the same CSS to `dist/tokens.css` for use outside Storybook |
+
+Naming rule: a Figma variable `color/bg/surface` becomes `var(--color-bg-surface)`. Each variable shows this name under **Code syntax** in Figma.
+
+## Robot do!
+
+This whole pipeline has become significantly less painful with the age of agents. If you run into problems point your agent at this repo (and connect it to Figma via MCP, though I believe you need a paid account for that) and let the robot do the boring stuff.
+
+Happy designing!
