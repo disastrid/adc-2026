@@ -1,5 +1,7 @@
 # Echo Chamber: Figma → Storybook
 
+## Want to see the slides from the talk? [Find them here on Google Slides](https://docs.google.com/presentation/d/1BQqQI81YHht2PtZOxro0g8B9dtoddr9uQYgAL7owFdQ/edit?usp=sharing)
+
 This is the documentation from my talk at audio.dev 2026, You Need A Design System.
 
 This is a tiny baby design system, and demonstrates a possible bridge between Figma variables and code. There's minimal token pipeline, and no build step: Storybook reads the JSON exported from Figma and turns it into CSS variables, and the components only ever use those variables.
