@@ -36,18 +36,6 @@ Go to `http://localhost:6006` to see Storybook and explore all the components.
 
 3. To see accessibility assessments, open the add-on panel (third icon from the right at the top - I know, it's not ideal). This opens the bottom panel where you can do things like change the text in your components, and there's an accessibility tab that will take you to any feature that it flags as problematic.
 
-## How it works
-
-| File | What it does |
-|---|---|
-| `tokens/*.json` | The Figma export, unchanged |
-| `tokens.config.json` | Which names are modes (`Ember`, `Dark`…) and which are just collection names to drop |
-| `src/tokens.js` | ~90 lines: JSON → `--css-variables`, with modes as `[data-product]` / `[data-theme]` selectors |
-| `src/components/` | Button, Icon Button, Toggle, Knob: plain HTML and CSS, using variables only |
-| `npm run tokens` | Optional: writes the same CSS to `dist/tokens.css` for use outside Storybook |
-
-Naming rule: a Figma variable `color/bg/surface` becomes `var(--color-bg-surface)`. Each variable shows this name under **Code syntax** in Figma.
-
 ## Robot do!
 
 This whole pipeline has become significantly less painful with the age of agents. If you run into problems point your agent at this repo (and connect it to Figma via MCP, though I believe you need a paid account for that) and let the robot do the boring stuff.
