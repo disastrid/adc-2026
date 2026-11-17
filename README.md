@@ -38,6 +38,10 @@ Go to `http://localhost:6006` to see Storybook and explore all the components.
 
 ## Robot do!
 
-This whole pipeline has become significantly less painful with the age of agents. If you run into problems point your agent at this repo (and connect it to Figma via MCP, though I believe you need a paid account for that) and let the robot do the boring stuff.
+This whole token pipeline process has become significantly less painful with the age of agents. If you use this as a starting point and later expand it you'll likely run into some boring problems. I recommend pointing your agent at the Storybook (and you can also connect it to Figma via MCP to inspect tokens there, though I believe you need a paid account for that) and let the robot work out all the boring stuff. 
+
+### Pro tip
+
+There are times when tokens need to be structured in a particular way. If your robot recommends this don't bang your head against a wall figuring out how to do it - get the robot to write a Figma plugin that does exactly what needs to be done. Installing your own custom plugin is easy and free!
 
 Happy designing!
